@@ -4,7 +4,7 @@ import { EditorialPage, SectionLabel } from "@/components/editorial-page";
 import { StatusBadge } from "@/components/site-shell";
 import { chapters, claims } from "@/lib/dossier-data";
 
-export const Route = createFileRoute("/dossier")({
+export const Route = createFileRoute("/dossier/")({
   head: () => ({ meta: [
     { title: "Achter het profiel — Onderzoeksdossier" },
     { name: "description", content: "Het controleerbare onderzoeksdossier over de commerciële infrastructuur rond digitale intimiteit." },
