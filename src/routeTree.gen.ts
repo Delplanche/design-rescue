@@ -10,14 +10,23 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as BoekRouteImport } from './routes/boek'
 import { Route as BronnenRouteImport } from './routes/bronnen'
 import { Route as ClaimsRouteImport } from './routes/claims'
+import { Route as DossierRouteImport } from './routes/dossier'
 import { Route as MethodologieRouteImport } from './routes/methodologie'
+import { Route as BoekSlugRouteImport } from './routes/boek.$slug'
+import { Route as DossierSlugRouteImport } from './routes/dossier.$slug'
 import { Route as HoofdstukSlugRouteImport } from './routes/hoofdstuk.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BoekRoute = BoekRouteImport.update({
+  id: '/boek',
+  path: '/boek',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BronnenRoute = BronnenRouteImport.update({
@@ -30,10 +39,25 @@ const ClaimsRoute = ClaimsRouteImport.update({
   path: '/claims',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DossierRoute = DossierRouteImport.update({
+  id: '/dossier',
+  path: '/dossier',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const MethodologieRoute = MethodologieRouteImport.update({
   id: '/methodologie',
   path: '/methodologie',
   getParentRoute: () => rootRouteImport,
+} as any)
+const BoekSlugRoute = BoekSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => BoekRoute,
+} as any)
+const DossierSlugRoute = DossierSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => DossierRoute,
 } as any)
 const HoofdstukSlugRoute = HoofdstukSlugRouteImport.update({
   id: '/hoofdstuk/$slug',
@@ -43,44 +67,80 @@ const HoofdstukSlugRoute = HoofdstukSlugRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/boek': typeof BoekRouteWithChildren
   '/bronnen': typeof BronnenRoute
   '/claims': typeof ClaimsRoute
+  '/dossier': typeof DossierRouteWithChildren
   '/methodologie': typeof MethodologieRoute
+  '/boek/$slug': typeof BoekSlugRoute
+  '/dossier/$slug': typeof DossierSlugRoute
   '/hoofdstuk/$slug': typeof HoofdstukSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/boek': typeof BoekRouteWithChildren
   '/bronnen': typeof BronnenRoute
   '/claims': typeof ClaimsRoute
+  '/dossier': typeof DossierRouteWithChildren
   '/methodologie': typeof MethodologieRoute
+  '/boek/$slug': typeof BoekSlugRoute
+  '/dossier/$slug': typeof DossierSlugRoute
   '/hoofdstuk/$slug': typeof HoofdstukSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/boek': typeof BoekRouteWithChildren
   '/bronnen': typeof BronnenRoute
   '/claims': typeof ClaimsRoute
+  '/dossier': typeof DossierRouteWithChildren
   '/methodologie': typeof MethodologieRoute
+  '/boek/$slug': typeof BoekSlugRoute
+  '/dossier/$slug': typeof DossierSlugRoute
   '/hoofdstuk/$slug': typeof HoofdstukSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/bronnen' | '/claims' | '/methodologie' | '/hoofdstuk/$slug'
+  fullPaths:
+    | '/'
+    | '/boek'
+    | '/bronnen'
+    | '/claims'
+    | '/dossier'
+    | '/methodologie'
+    | '/boek/$slug'
+    | '/dossier/$slug'
+    | '/hoofdstuk/$slug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/bronnen' | '/claims' | '/methodologie' | '/hoofdstuk/$slug'
+  to:
+    | '/'
+    | '/boek'
+    | '/bronnen'
+    | '/claims'
+    | '/dossier'
+    | '/methodologie'
+    | '/boek/$slug'
+    | '/dossier/$slug'
+    | '/hoofdstuk/$slug'
   id:
     | '__root__'
     | '/'
+    | '/boek'
     | '/bronnen'
     | '/claims'
+    | '/dossier'
     | '/methodologie'
+    | '/boek/$slug'
+    | '/dossier/$slug'
     | '/hoofdstuk/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  BoekRoute: typeof BoekRouteWithChildren
   BronnenRoute: typeof BronnenRoute
   ClaimsRoute: typeof ClaimsRoute
+  DossierRoute: typeof DossierRouteWithChildren
   MethodologieRoute: typeof MethodologieRoute
   HoofdstukSlugRoute: typeof HoofdstukSlugRoute
 }
@@ -92,6 +152,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/boek': {
+      id: '/boek'
+      path: '/boek'
+      fullPath: '/boek'
+      preLoaderRoute: typeof BoekRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/bronnen': {
@@ -108,12 +175,33 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ClaimsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/dossier': {
+      id: '/dossier'
+      path: '/dossier'
+      fullPath: '/dossier'
+      preLoaderRoute: typeof DossierRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/methodologie': {
       id: '/methodologie'
       path: '/methodologie'
       fullPath: '/methodologie'
       preLoaderRoute: typeof MethodologieRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/boek/$slug': {
+      id: '/boek/$slug'
+      path: '/$slug'
+      fullPath: '/boek/$slug'
+      preLoaderRoute: typeof BoekSlugRouteImport
+      parentRoute: typeof BoekRoute
+    }
+    '/dossier/$slug': {
+      id: '/dossier/$slug'
+      path: '/$slug'
+      fullPath: '/dossier/$slug'
+      preLoaderRoute: typeof DossierSlugRouteImport
+      parentRoute: typeof DossierRoute
     }
     '/hoofdstuk/$slug': {
       id: '/hoofdstuk/$slug'
@@ -125,10 +213,33 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface BoekRouteChildren {
+  BoekSlugRoute: typeof BoekSlugRoute
+}
+
+const BoekRouteChildren: BoekRouteChildren = {
+  BoekSlugRoute: BoekSlugRoute,
+}
+
+const BoekRouteWithChildren = BoekRoute._addFileChildren(BoekRouteChildren)
+
+interface DossierRouteChildren {
+  DossierSlugRoute: typeof DossierSlugRoute
+}
+
+const DossierRouteChildren: DossierRouteChildren = {
+  DossierSlugRoute: DossierSlugRoute,
+}
+
+const DossierRouteWithChildren =
+  DossierRoute._addFileChildren(DossierRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  BoekRoute: BoekRouteWithChildren,
   BronnenRoute: BronnenRoute,
   ClaimsRoute: ClaimsRoute,
+  DossierRoute: DossierRouteWithChildren,
   MethodologieRoute: MethodologieRoute,
   HoofdstukSlugRoute: HoofdstukSlugRoute,
 }

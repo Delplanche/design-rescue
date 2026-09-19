@@ -16,7 +16,7 @@ export const Route = createFileRoute("/dossier")({
 });
 
 function DossierPage() {
-  return <EditorialPage kind="Onderzoek" title="Achter het profiel" deck="Een feitelijk dossier over wie spreekt, welke gegevens meebewegen en waar commerciële verantwoordelijkheid begint." next={{to:"/claims",label:"Open het claimregister"} as never}>
+  return <EditorialPage kind="Onderzoek" title="Achter het profiel" deck="Een feitelijk dossier over wie spreekt, welke gegevens meebewegen en waar commerciële verantwoordelijkheid begint." next={{to:"/claims",label:"Open het claimregister"}}>
     <aside className="evidence-note"><strong>Bewijsregel</strong><p>Onderzoek, getuigenis en onbevestigde hypothese krijgen elk een eigen status. De status is geen waarheidsscore.</p></aside>
     <section><SectionLabel>Zes hoofdstukken</SectionLabel><div className="chapter-list editorial-list">{chapters.map(c=><Link to="/dossier/$slug" params={{slug:c.slug}} className="chapter-item" key={c.slug}><span className="chapter-nr">{c.nr}</span><div><h2>{c.title}</h2><p>{c.deck}</p></div><span className="read-label">Lees <ArrowRight /></span></Link>)}</div></section>
     <section><SectionLabel>Stand van het bewijs</SectionLabel><div className="register-strip">{claims.map(c=><div key={c.id}><code>{c.id}</code><StatusBadge status={c.status}/><p>{c.title}</p></div>)}</div></section>
