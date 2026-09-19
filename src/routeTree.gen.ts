@@ -10,33 +10,79 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as BronnenRouteImport } from './routes/bronnen'
+import { Route as ClaimsRouteImport } from './routes/claims'
+import { Route as MethodologieRouteImport } from './routes/methodologie'
+import { Route as HoofdstukSlugRouteImport } from './routes/hoofdstuk.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BronnenRoute = BronnenRouteImport.update({
+  id: '/bronnen',
+  path: '/bronnen',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ClaimsRoute = ClaimsRouteImport.update({
+  id: '/claims',
+  path: '/claims',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MethodologieRoute = MethodologieRouteImport.update({
+  id: '/methodologie',
+  path: '/methodologie',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HoofdstukSlugRoute = HoofdstukSlugRouteImport.update({
+  id: '/hoofdstuk/$slug',
+  path: '/hoofdstuk/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/bronnen': typeof BronnenRoute
+  '/claims': typeof ClaimsRoute
+  '/methodologie': typeof MethodologieRoute
+  '/hoofdstuk/$slug': typeof HoofdstukSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/bronnen': typeof BronnenRoute
+  '/claims': typeof ClaimsRoute
+  '/methodologie': typeof MethodologieRoute
+  '/hoofdstuk/$slug': typeof HoofdstukSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/bronnen': typeof BronnenRoute
+  '/claims': typeof ClaimsRoute
+  '/methodologie': typeof MethodologieRoute
+  '/hoofdstuk/$slug': typeof HoofdstukSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/bronnen' | '/claims' | '/methodologie' | '/hoofdstuk/$slug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/bronnen' | '/claims' | '/methodologie' | '/hoofdstuk/$slug'
+  id:
+    | '__root__'
+    | '/'
+    | '/bronnen'
+    | '/claims'
+    | '/methodologie'
+    | '/hoofdstuk/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  BronnenRoute: typeof BronnenRoute
+  ClaimsRoute: typeof ClaimsRoute
+  MethodologieRoute: typeof MethodologieRoute
+  HoofdstukSlugRoute: typeof HoofdstukSlugRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +94,43 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/bronnen': {
+      id: '/bronnen'
+      path: '/bronnen'
+      fullPath: '/bronnen'
+      preLoaderRoute: typeof BronnenRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/claims': {
+      id: '/claims'
+      path: '/claims'
+      fullPath: '/claims'
+      preLoaderRoute: typeof ClaimsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/methodologie': {
+      id: '/methodologie'
+      path: '/methodologie'
+      fullPath: '/methodologie'
+      preLoaderRoute: typeof MethodologieRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/hoofdstuk/$slug': {
+      id: '/hoofdstuk/$slug'
+      path: '/hoofdstuk/$slug'
+      fullPath: '/hoofdstuk/$slug'
+      preLoaderRoute: typeof HoofdstukSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  BronnenRoute: BronnenRoute,
+  ClaimsRoute: ClaimsRoute,
+  MethodologieRoute: MethodologieRoute,
+  HoofdstukSlugRoute: HoofdstukSlugRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
