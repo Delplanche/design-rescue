@@ -10,5 +10,5 @@
 - [x] Onderzoek, essay en beleidsvoorstellen in aparte pagina's scheiden
 - [x] Redactionele hybride stijl met papier, inkt en oxblood invoeren
 - [x] Dossier-, boek-, filosofie-, juridische, ontkoppelings- en archiefroutes bouwen
-- [ ] Integrale PDF in de nieuwe identiteit herontwerpen — huidige gecontroleerde editie blijft beschikbaar
+- [x] Integrale PDF in de nieuwe identiteit herontwerpen
 - [x] Nieuwe routes, downloads en vormgeving op telefoon en desktop controleren
