@@ -65,9 +65,9 @@ const BoekIndexRoute = BoekIndexRouteImport.update({
   getParentRoute: () => rootRouteImport,
 } as any)
 const BoekSlugRoute = BoekSlugRouteImport.update({
-  id: '/$slug',
-  path: '/$slug',
-  getParentRoute: () => BoekRoute,
+  id: '/boek/$slug',
+  path: '/boek/$slug',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const DossierIndexRoute = DossierIndexRouteImport.update({
   id: '/dossier/',
@@ -75,9 +75,9 @@ const DossierIndexRoute = DossierIndexRouteImport.update({
   getParentRoute: () => rootRouteImport,
 } as any)
 const DossierSlugRoute = DossierSlugRouteImport.update({
-  id: '/$slug',
-  path: '/$slug',
-  getParentRoute: () => DossierRoute,
+  id: '/dossier/$slug',
+  path: '/dossier/$slug',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const HoofdstukSlugRoute = HoofdstukSlugRouteImport.update({
   id: '/hoofdstuk/$slug',
@@ -90,9 +90,9 @@ const JuridischIndexRoute = JuridischIndexRouteImport.update({
   getParentRoute: () => rootRouteImport,
 } as any)
 const JuridischLexHumanitasRoute = JuridischLexHumanitasRouteImport.update({
-  id: '/lex-humanitas',
-  path: '/lex-humanitas',
-  getParentRoute: () => JuridischRoute,
+  id: '/juridisch/lex-humanitas',
+  path: '/juridisch/lex-humanitas',
+  getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
@@ -203,7 +203,10 @@ export interface RootRouteChildren {
   FilosofieRoute: typeof FilosofieRoute
   MethodologieRoute: typeof MethodologieRoute
   OntkoppelingRoute: typeof OntkoppelingRoute
+  BoekSlugRoute: typeof BoekSlugRoute
+  DossierSlugRoute: typeof DossierSlugRoute
   HoofdstukSlugRoute: typeof HoofdstukSlugRoute
+  JuridischLexHumanitasRoute: typeof JuridischLexHumanitasRoute
   BoekIndexRoute: typeof BoekIndexRoute
   DossierIndexRoute: typeof DossierIndexRoute
   JuridischIndexRoute: typeof JuridischIndexRoute
@@ -269,10 +272,10 @@ declare module '@tanstack/react-router' {
     }
     '/boek/$slug': {
       id: '/boek/$slug'
-      path: '/$slug'
+      path: '/boek/$slug'
       fullPath: '/boek/$slug'
       preLoaderRoute: typeof BoekSlugRouteImport
-      parentRoute: typeof BoekRoute
+      parentRoute: typeof rootRouteImport
     }
     '/dossier/': {
       id: '/dossier/'
@@ -283,10 +286,10 @@ declare module '@tanstack/react-router' {
     }
     '/dossier/$slug': {
       id: '/dossier/$slug'
-      path: '/$slug'
+      path: '/dossier/$slug'
       fullPath: '/dossier/$slug'
       preLoaderRoute: typeof DossierSlugRouteImport
-      parentRoute: typeof DossierRoute
+      parentRoute: typeof rootRouteImport
     }
     '/hoofdstuk/$slug': {
       id: '/hoofdstuk/$slug'
@@ -304,10 +307,10 @@ declare module '@tanstack/react-router' {
     }
     '/juridisch/lex-humanitas': {
       id: '/juridisch/lex-humanitas'
-      path: '/lex-humanitas'
+      path: '/juridisch/lex-humanitas'
       fullPath: '/juridisch/lex-humanitas'
       preLoaderRoute: typeof JuridischLexHumanitasRouteImport
-      parentRoute: typeof JuridischRoute
+      parentRoute: typeof rootRouteImport
     }
   }
 }
@@ -320,7 +323,10 @@ const rootRouteChildren: RootRouteChildren = {
   FilosofieRoute: FilosofieRoute,
   MethodologieRoute: MethodologieRoute,
   OntkoppelingRoute: OntkoppelingRoute,
+  BoekSlugRoute: BoekSlugRoute,
+  DossierSlugRoute: DossierSlugRoute,
   HoofdstukSlugRoute: HoofdstukSlugRoute,
+  JuridischLexHumanitasRoute: JuridischLexHumanitasRoute,
   BoekIndexRoute: BoekIndexRoute,
   DossierIndexRoute: DossierIndexRoute,
   JuridischIndexRoute: JuridischIndexRoute,
