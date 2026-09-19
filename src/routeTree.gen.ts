@@ -10,18 +10,28 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ArchiefRouteImport } from './routes/archief'
 import { Route as BoekRouteImport } from './routes/boek'
 import { Route as BronnenRouteImport } from './routes/bronnen'
 import { Route as ClaimsRouteImport } from './routes/claims'
 import { Route as DossierRouteImport } from './routes/dossier'
+import { Route as FilosofieRouteImport } from './routes/filosofie'
+import { Route as JuridischRouteImport } from './routes/juridisch'
 import { Route as MethodologieRouteImport } from './routes/methodologie'
+import { Route as OntkoppelingRouteImport } from './routes/ontkoppeling'
 import { Route as BoekSlugRouteImport } from './routes/boek.$slug'
 import { Route as DossierSlugRouteImport } from './routes/dossier.$slug'
 import { Route as HoofdstukSlugRouteImport } from './routes/hoofdstuk.$slug'
+import { Route as JuridischLexHumanitasRouteImport } from './routes/juridisch.lex-humanitas'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ArchiefRoute = ArchiefRouteImport.update({
+  id: '/archief',
+  path: '/archief',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BoekRoute = BoekRouteImport.update({
@@ -44,9 +54,24 @@ const DossierRoute = DossierRouteImport.update({
   path: '/dossier',
   getParentRoute: () => rootRouteImport,
 } as any)
+const FilosofieRoute = FilosofieRouteImport.update({
+  id: '/filosofie',
+  path: '/filosofie',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const JuridischRoute = JuridischRouteImport.update({
+  id: '/juridisch',
+  path: '/juridisch',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const MethodologieRoute = MethodologieRouteImport.update({
   id: '/methodologie',
   path: '/methodologie',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OntkoppelingRoute = OntkoppelingRouteImport.update({
+  id: '/ontkoppeling',
+  path: '/ontkoppeling',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BoekSlugRoute = BoekSlugRouteImport.update({
@@ -64,84 +89,123 @@ const HoofdstukSlugRoute = HoofdstukSlugRouteImport.update({
   path: '/hoofdstuk/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const JuridischLexHumanitasRoute = JuridischLexHumanitasRouteImport.update({
+  id: '/lex-humanitas',
+  path: '/lex-humanitas',
+  getParentRoute: () => JuridischRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/archief': typeof ArchiefRoute
   '/boek': typeof BoekRouteWithChildren
   '/bronnen': typeof BronnenRoute
   '/claims': typeof ClaimsRoute
   '/dossier': typeof DossierRouteWithChildren
+  '/filosofie': typeof FilosofieRoute
+  '/juridisch': typeof JuridischRouteWithChildren
   '/methodologie': typeof MethodologieRoute
+  '/ontkoppeling': typeof OntkoppelingRoute
   '/boek/$slug': typeof BoekSlugRoute
   '/dossier/$slug': typeof DossierSlugRoute
   '/hoofdstuk/$slug': typeof HoofdstukSlugRoute
+  '/juridisch/lex-humanitas': typeof JuridischLexHumanitasRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/archief': typeof ArchiefRoute
   '/boek': typeof BoekRouteWithChildren
   '/bronnen': typeof BronnenRoute
   '/claims': typeof ClaimsRoute
   '/dossier': typeof DossierRouteWithChildren
+  '/filosofie': typeof FilosofieRoute
+  '/juridisch': typeof JuridischRouteWithChildren
   '/methodologie': typeof MethodologieRoute
+  '/ontkoppeling': typeof OntkoppelingRoute
   '/boek/$slug': typeof BoekSlugRoute
   '/dossier/$slug': typeof DossierSlugRoute
   '/hoofdstuk/$slug': typeof HoofdstukSlugRoute
+  '/juridisch/lex-humanitas': typeof JuridischLexHumanitasRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/archief': typeof ArchiefRoute
   '/boek': typeof BoekRouteWithChildren
   '/bronnen': typeof BronnenRoute
   '/claims': typeof ClaimsRoute
   '/dossier': typeof DossierRouteWithChildren
+  '/filosofie': typeof FilosofieRoute
+  '/juridisch': typeof JuridischRouteWithChildren
   '/methodologie': typeof MethodologieRoute
+  '/ontkoppeling': typeof OntkoppelingRoute
   '/boek/$slug': typeof BoekSlugRoute
   '/dossier/$slug': typeof DossierSlugRoute
   '/hoofdstuk/$slug': typeof HoofdstukSlugRoute
+  '/juridisch/lex-humanitas': typeof JuridischLexHumanitasRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/archief'
     | '/boek'
     | '/bronnen'
     | '/claims'
     | '/dossier'
+    | '/filosofie'
+    | '/juridisch'
     | '/methodologie'
+    | '/ontkoppeling'
     | '/boek/$slug'
     | '/dossier/$slug'
     | '/hoofdstuk/$slug'
+    | '/juridisch/lex-humanitas'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/archief'
     | '/boek'
     | '/bronnen'
     | '/claims'
     | '/dossier'
+    | '/filosofie'
+    | '/juridisch'
     | '/methodologie'
+    | '/ontkoppeling'
     | '/boek/$slug'
     | '/dossier/$slug'
     | '/hoofdstuk/$slug'
+    | '/juridisch/lex-humanitas'
   id:
     | '__root__'
     | '/'
+    | '/archief'
     | '/boek'
     | '/bronnen'
     | '/claims'
     | '/dossier'
+    | '/filosofie'
+    | '/juridisch'
     | '/methodologie'
+    | '/ontkoppeling'
     | '/boek/$slug'
     | '/dossier/$slug'
     | '/hoofdstuk/$slug'
+    | '/juridisch/lex-humanitas'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ArchiefRoute: typeof ArchiefRoute
   BoekRoute: typeof BoekRouteWithChildren
   BronnenRoute: typeof BronnenRoute
   ClaimsRoute: typeof ClaimsRoute
   DossierRoute: typeof DossierRouteWithChildren
+  FilosofieRoute: typeof FilosofieRoute
+  JuridischRoute: typeof JuridischRouteWithChildren
   MethodologieRoute: typeof MethodologieRoute
+  OntkoppelingRoute: typeof OntkoppelingRoute
   HoofdstukSlugRoute: typeof HoofdstukSlugRoute
 }
 
@@ -152,6 +216,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/archief': {
+      id: '/archief'
+      path: '/archief'
+      fullPath: '/archief'
+      preLoaderRoute: typeof ArchiefRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/boek': {
@@ -182,11 +253,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DossierRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/filosofie': {
+      id: '/filosofie'
+      path: '/filosofie'
+      fullPath: '/filosofie'
+      preLoaderRoute: typeof FilosofieRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/juridisch': {
+      id: '/juridisch'
+      path: '/juridisch'
+      fullPath: '/juridisch'
+      preLoaderRoute: typeof JuridischRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/methodologie': {
       id: '/methodologie'
       path: '/methodologie'
       fullPath: '/methodologie'
       preLoaderRoute: typeof MethodologieRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ontkoppeling': {
+      id: '/ontkoppeling'
+      path: '/ontkoppeling'
+      fullPath: '/ontkoppeling'
+      preLoaderRoute: typeof OntkoppelingRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/boek/$slug': {
@@ -209,6 +301,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/hoofdstuk/$slug'
       preLoaderRoute: typeof HoofdstukSlugRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/juridisch/lex-humanitas': {
+      id: '/juridisch/lex-humanitas'
+      path: '/lex-humanitas'
+      fullPath: '/juridisch/lex-humanitas'
+      preLoaderRoute: typeof JuridischLexHumanitasRouteImport
+      parentRoute: typeof JuridischRoute
     }
   }
 }
@@ -234,13 +333,29 @@ const DossierRouteChildren: DossierRouteChildren = {
 const DossierRouteWithChildren =
   DossierRoute._addFileChildren(DossierRouteChildren)
 
+interface JuridischRouteChildren {
+  JuridischLexHumanitasRoute: typeof JuridischLexHumanitasRoute
+}
+
+const JuridischRouteChildren: JuridischRouteChildren = {
+  JuridischLexHumanitasRoute: JuridischLexHumanitasRoute,
+}
+
+const JuridischRouteWithChildren = JuridischRoute._addFileChildren(
+  JuridischRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ArchiefRoute: ArchiefRoute,
   BoekRoute: BoekRouteWithChildren,
   BronnenRoute: BronnenRoute,
   ClaimsRoute: ClaimsRoute,
   DossierRoute: DossierRouteWithChildren,
+  FilosofieRoute: FilosofieRoute,
+  JuridischRoute: JuridischRouteWithChildren,
   MethodologieRoute: MethodologieRoute,
+  OntkoppelingRoute: OntkoppelingRoute,
   HoofdstukSlugRoute: HoofdstukSlugRoute,
 }
 export const routeTree = rootRouteImport
